@@ -32,8 +32,8 @@ $(window).on('focus', function(){
 });
 
 function send_popup_news_info(){
-    let news_metadata = getNewsMetadataFromMetaTag();
-    chrome.runtime.sendMessage({"popup_data": news_metadata}, function(response) {});
+    let news_metadata = getNewsMetadataFromMetaTag()
+    chrome.runtime.sendMessage({"popup_data": news_metadata}, function(response) {})
 }
 
 function getNewsMetadataFromMetaTag(){

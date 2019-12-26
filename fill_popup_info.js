@@ -43,7 +43,7 @@ class FillPopupInfo {
                 let server = servers[server_name]
                 if(origin_base_path == server["url"].concat(server["path"])){
                     if(new Date(server["expiration_date"]) > new Date()){
-                        FillPluginInfo.request_news_info(news_metadata, sender)
+                        FillPopupInfo.request_news_info(news_metadata, sender)
                         return
                     }else{
                         putAlertInfo("Server certificate registration is expired", sender)

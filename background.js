@@ -17,11 +17,11 @@ chrome.runtime.onMessage.addListener(
 );
 
 function fillNewsPopup(news_metadata, sender){
-    if (!FillPluginInfo.validate(news_metadata)){
+    if (!FillPopupInfo.validate(news_metadata)){
         console.log("Error: some news metadata is missing")
         return;
     }
-    FillPluginInfo.fetch(news_metadata, sender);
+    FillPopupInfo.fetch(news_metadata, sender);
 }
 
 function putErrorInfo(error_message, sender){
