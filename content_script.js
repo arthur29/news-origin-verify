@@ -4,7 +4,7 @@ $(document).ready(function(){
     $('[data-type="news"]').mouseenter(function(){
         current_object = $(this)
         timer = setTimeout(function(){
-            let news_metadata = getNewsMetadataFromElement(current_object)
+            let news_metadata = getNewsMetadataFromGlobalAttributeData(current_object)
             fillNewsModal(news_metadata)
             positionModal(current_object)
         }, 1000);
@@ -24,19 +24,19 @@ $(document).ready(function(){
             hideModal()
         }, 300);
     });
-    send_plugin_news_info();
+    send_popup_news_info();
 });
 
 $(window).on('focus', function(){
-    send_plugin_news_info();
+    send_popup_news_info();
 });
 
-function send_plugin_news_info(){
-    let news_metadata = getNewsMetadataFromMeta();
-    chrome.runtime.sendMessage({"news_metadata": news_metadata}, function(response) {});
+function send_popup_news_info(){
+    let news_metadata = getNewsMetadataFromMetaTag();
+    chrome.runtime.sendMessage({"popup_data": news_metadata}, function(response) {});
 }
 
-function getNewsMetadataFromMeta(){
+function getNewsMetadataFromMetaTag(){
     let news_info = {}
     news_info["newsOriginUrl"] = $("meta[name=news-origin-url]").attr("content")
     news_info["newsOriginBasePath"] = $("meta[name=news-origin-base-path]").attr("content")
@@ -44,7 +44,7 @@ function getNewsMetadataFromMeta(){
     return news_info;
 }
 
-function getNewsMetadataFromElement(current_object){
+function getNewsMetadataFromGlobalAttributeData(current_object){
     let news_info = {}
     news_info["newsOriginUrl"] = current_object.data("newsOriginUrl")
     news_info["newsOriginBasePath"] = current_object.data("newsOriginBasePath")

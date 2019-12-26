@@ -1,4 +1,4 @@
-class FillPluginInfo {
+class FillPopupInfo {
     static validate(news_metadata) {
         if(news_metadata["newsOriginUrl"] != undefined ||
             (news_metadata["newsRecordId"] != undefined &&

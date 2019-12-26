@@ -8,15 +8,15 @@ chrome.runtime.onMessage.addListener(
     function(message, sender, sendResponse){
         if(message == "from_popup"){
             sendResponse(data);
-        }else{ // Message comming from contentScript
+        }else if(message.constructor == Object && message["popup_data"]){ // Message comming from content_script
             sendResponse();
-            data = message["news_metadata"];
-            fillNewsModal(data,sender)
+            data = message["popup_data"];
+            fillNewsPopup(data,sender)
         }
     }
 );
 
-function fillNewsModal(news_metadata, sender){
+function fillNewsPopup(news_metadata, sender){
     if (!FillPluginInfo.validate(news_metadata)){
         console.log("Error: some news metadata is missing")
         return;
