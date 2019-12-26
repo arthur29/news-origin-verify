@@ -1,0 +1,12 @@
+{
+    "localhost": {
+        "url": "http://localhost:4000",
+        "path": "/news",
+        "expiration_date": "2019-12-31"
+    },
+    "expired": {
+        "url": "http://another:400",
+        "path": "/news",
+        "expiration_date": "2019-01-01"
+    }
+}
