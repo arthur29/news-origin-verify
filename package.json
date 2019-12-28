@@ -1,0 +1,22 @@
+{
+  "name": "news-origin-verify",
+  "version": "1.0.0",
+  "description": "Chrome extension to track news source origin",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arthur29/news-origin-verify.git"
+  },
+  "author": "arthur29",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arthur29/news-origin-verify/issues"
+  },
+  "homepage": "https://github.com/arthur29/news-origin-verify#readme",
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
+}
