@@ -35,17 +35,6 @@ function putErrorInfo(error_message, sender){
     })
 }
 
-function putAlertInfo(error_message, sender){
-    data = {
-        msg: "news_error",
-        data: error_message
-    }
-    chrome.pageAction.setIcon({
-        tabId: sender.tab.id,
-        path : "images/danger-icon-4.png"
-    })
-}
-
 function putSuccessInfo(news_info, sender){
     data = {
         msg: "news_success",

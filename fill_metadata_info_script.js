@@ -46,10 +46,10 @@ class FillMetadataInfoScript {
                         return
                     }else{
                         if (sender != null) {
-                            putAlertInfo("Server certificate registration is expired", sender)
+                            putErrorInfo("Server certificate registration is expired", sender)
                             showPageAction(sender)
                         }else{
-                            putAlertInfo("Server certificate registration is expired")
+                            putErrorInfo("Server certificate registration is expired")
                             showModal()
                         }
                         return
@@ -73,10 +73,10 @@ class FillMetadataInfoScript {
             statusCode: {
                 204: function(){
                     if (sender != null){
-                        putAlertInfo("The source is trust, but the news is not recorded on it", sender);
+                        putErrorInfo("The source is trust, but the news is not recorded on it", sender);
                         showPageAction(sender)
                     }else{
-                        putAlertInfo("The source is trust, but the news is not recorded on it");
+                        putErrorInfo("The source is trust, but the news is not recorded on it");
                         showModal()
                     }
                 },

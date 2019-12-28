@@ -64,10 +64,6 @@ function putErrorInfo(error){
     $("#news-block").html(modalWithoutNews(error));
 }
 
-function putAlertInfo(alert){
-    $("#news-block").html(modalWithoutNews(alert));
-}
-
 function putSuccessInfo(news_info){
     $("#news-block").html(modalWithNews(news_info));
 }
