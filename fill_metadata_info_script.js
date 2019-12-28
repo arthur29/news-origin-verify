@@ -1,4 +1,4 @@
-class FillPopupInfo {
+class FillMetadataInfoScript {
     static validate(news_metadata) {
         if(news_metadata["newsOriginUrl"] != undefined ||
             (news_metadata["newsRecordId"] != undefined &&
@@ -9,7 +9,7 @@ class FillPopupInfo {
         return false;
     }
 
-    static fetch(news_metadata, sender){
+    static fetch(news_metadata, sender=null){
         if (news_metadata["newsOriginUrl"] != null) {
             news_metadata = this.parse_url(news_metadata)
         }
@@ -38,22 +38,31 @@ class FillPopupInfo {
     static validate_origin_base_path(news_metadata, sender){
         $.getJSON(chrome.runtime.getURL("servers.json")).done(function(servers){
             for(let server_name in servers){
-
                 let origin_base_path = news_metadata["newsOriginBasePath"]
                 let server = servers[server_name]
                 if(origin_base_path == server["url"].concat(server["path"])){
                     if(new Date(server["expiration_date"]) > new Date()){
-                        FillPopupInfo.request_news_info(news_metadata, sender)
+                        FillMetadataInfoScript.request_news_info(news_metadata, sender)
                         return
                     }else{
-                        putAlertInfo("Server certificate registration is expired", sender)
-                        showPageAction(sender)
+                        if (sender != null) {
+                            putAlertInfo("Server certificate registration is expired", sender)
+                            showPageAction(sender)
+                        }else{
+                            putAlertInfo("Server certificate registration is expired")
+                            showModal()
+                        }
                         return
                     }
                 }
             }
-            putErrorInfo("The registered server was not found on trusted server list", sender)
-            showPageAction(sender)
+            if(sender != null){
+                putErrorInfo("The registered server was not found on trusted server list", sender)
+                showPageAction(sender)
+            }else{
+                putErrorInfo("The registered server was not found on trusted server list")
+                showModal()
+            }
         })
     }
 
@@ -63,12 +72,22 @@ class FillPopupInfo {
             method: "GET",
             statusCode: {
                 204: function(){
+                    if (sender != null){
                         putAlertInfo("The source is trust, but the news is not recorded on it", sender);
                         showPageAction(sender)
+                    }else{
+                        putAlertInfo("The source is trust, but the news is not recorded on it");
+                        showModal()
+                    }
                 },
                 200: function(news_info){
-                    putSuccessInfo(news_info, sender)
-                    showPageAction(sender)
+                    if (sender != null) {
+                        putSuccessInfo(news_info, sender)
+                        showPageAction(sender)
+                    }else{
+                        putSuccessInfo(news_info)
+                        showModal()
+                    }
                 }
             }
         });

@@ -4,13 +4,13 @@
   "description": "From meta-* and meta tag it will find for origin of news based on reliable database",
   "permissions": ["activeTab", "storage", "declarativeContent"],
   "background": {
-    "scripts": ["node_modules/jquery/dist/jquery.min.js", "fill_popup_info.js", "background.js"],
+    "scripts": ["node_modules/jquery/dist/jquery.min.js", "fill_metadata_info_script.js", "background.js"],
     "persistent": false
   },
   "content_scripts": [
     {
         "matches": ["*://*/*"],
-        "js": ["node_modules/jquery/dist/jquery.min.js", "fill_modal_info.js", "content_script.js"],
+        "js": ["node_modules/jquery/dist/jquery.min.js", "fill_metadata_info_script.js", "content_script.js"],
         "file": ["servers.json"]
     }
   ],

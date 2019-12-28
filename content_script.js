@@ -1,3 +1,7 @@
+$(window).on('focus', function(){
+    send_popup_news_info();
+});
+
 $(document).ready(function(){
     document.body.innerHTML += modal
     var timer;
@@ -27,10 +31,6 @@ $(document).ready(function(){
     send_popup_news_info();
 });
 
-$(window).on('focus', function(){
-    send_popup_news_info();
-});
-
 function send_popup_news_info(){
     let news_metadata = getNewsMetadataFromMetaTag()
     chrome.runtime.sendMessage({"popup_data": news_metadata}, function(response) {})
@@ -53,15 +53,19 @@ function getNewsMetadataFromGlobalAttributeData(current_object){
 }
 
 function fillNewsModal(news_metadata){
-    if (!FillModalInfo.validate(news_metadata)){
+    if (!FillMetadataInfoScript.validate(news_metadata)){
         console.log("Error: some news metadata is missing")
         return;
     }
-    FillModalInfo.fetch(news_metadata);
+    FillMetadataInfoScript.fetch(news_metadata);
 }
 
 function putErrorInfo(error){
     $("#news-block").html(modalWithoutNews(error));
+}
+
+function putAlertInfo(alert){
+    $("#news-block").html(modalWithoutNews(alert));
 }
 
 function putSuccessInfo(news_info){
