@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/arthur29/news-origin-verify#readme",
   "dependencies": {
-    "jquery": "^3.4.1"
+    "jquery": "^3.5.0"
   }
 }
